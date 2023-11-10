@@ -1,0 +1,27 @@
+{
+    "name": "tounaf/ldap-bundle",
+    "description": "Ldap connection provider for symfony app",
+    "type": "symfony-bundle",
+    "require": {
+        "symfony/ldap": "6.1.* || 6.2.* || 6.3.*",
+        "symfony/dependency-injection": "6.3.* || 6.2.* || 6.1.* || 5.4.* || 4.4.*",
+        "symfony/config": "6.2.* || 6.1.* || 5.4.* || 4.4.*",
+        "symfony/framework-bundle": "6.2.* || 6.1.* || 5.4.* || 4.4.*",
+        "symfony/http-kernel": "6.2.* || 6.1.* || 5.4.* || 4.4.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Tounaf\\Ldap\\": ""
+        }
+    },
+    "authors": [
+        {
+            "name": "Fetra Harinjatovo",
+            "email": "harinjatovo.fetra@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "symfony/dependency-injection": "4.4.* || 5.4.* || 6.2.* || 6.3.* || 6.1.* || 7.*",
+        "symfony/security-bundle": "4.4.* || 5.4.* || 6.* || 7.*"
+    }
+}
