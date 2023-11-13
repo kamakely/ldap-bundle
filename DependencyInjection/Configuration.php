@@ -98,7 +98,6 @@ class Configuration implements ConfigurationInterface
                                     ->end()
                                     ->scalarNode("default_roles")
                                         ->defaultValue("ROLE_USER")
-                                        ->isRequired()
                                         ->example("ROLE_USER")
                                     ->end()
                                     ->scalarNode("uid_key")

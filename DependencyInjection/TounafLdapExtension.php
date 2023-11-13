@@ -51,14 +51,25 @@ class TounafLdapExtension extends Extension implements PrependExtensionInterface
                 $providerConfig = [
                     'providers' => $ldapConf[0]['providers']
                 ];
+                
                 $ldapProviderName = array_keys($ldapConf[0]['providers']);
+                $ldapProviderName = array_shift($ldapProviderName);
+                if(!isset($providerConfig['providers'][$ldapProviderName]['ldap']['service'])) {
+                    $providerConfig['providers'][$ldapProviderName]['ldap']['service'] = "Symfony\Component\Ldap\Ldap";
+                }
+
+                if(!isset($providerConfig['providers'][$ldapProviderName]['ldap']['default_roles'])) {
+                    $providerConfig['providers'][$ldapProviderName]['ldap']['default_roles'] = ["ROLE_USER"];
+                }
+                
                 $container->prependExtensionConfig('security', $providerConfig);
             }
+
             if(count($ldapConf[0]) > 0 && isset($ldapConf[0]['form_login_ldap'])) {
                 $container->loadFromExtension('security', [
                     'firewalls' => [
                         'main' => [
-                            'provider' => array_shift($ldapProviderName),
+                            'provider' => $ldapProviderName,
                             'form_login_ldap' => array_merge(["service" => "Symfony\Component\Ldap\Ldap"], $ldapConf[0]['form_login_ldap'])
                         ]
                     ]
