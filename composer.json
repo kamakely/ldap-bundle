@@ -2,6 +2,7 @@
     "name": "tounaf/ldap-bundle",
     "description": "Ldap connection provider for symfony app",
     "type": "symfony-bundle",
+    "license": "MIT",
     "require": {
         "symfony/ldap": "6.1.* || 6.2.* || 6.3.*",
         "symfony/dependency-injection": "6.3.* || 6.2.* || 6.1.* || 5.4.* || 4.4.*",
