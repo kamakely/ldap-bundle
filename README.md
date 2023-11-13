@@ -26,7 +26,7 @@ tounaf_ldap:
                 search_password: "password"
                 extra_fields: ['mail']
     form_login_ldap:
-        dn_string: 'DOMAIN\{username}' # ou {username}
+        dn_string: 'DOMAIN\{username}' # or {username}
         login_path: app_login
         check_path: app_login
         default_target_path: app_kama
@@ -59,7 +59,7 @@ tounaf_ldap:
                 uid_key:              sAMAccountName # Example: sAMAccountName
                 extra_fields:         []
     form_login_ldap:
-        # ds_string peut est de type: DOMAIN\{username} ou simplement {username}
+        # ds_string can be: DOMAIN\{username} or like just {username}
         dn_string:            '{username}' # Required, Example: 
         # route to login user
         login_path:           app_login
