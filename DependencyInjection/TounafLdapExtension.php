@@ -31,7 +31,7 @@ class TounafLdapExtension extends Extension implements PrependExtensionInterface
         $this->getSecurityExtensionConfig($container);
         $configuration = $this->getConfiguration($configs, $container);
         $config = $this->processConfiguration($configuration, $configs);
-        if($container->hasDefinition('Symfony\Component\Ldap\Adapter\ExtLdap\Adapter')) {
+        if($container->hasDefinition('Symfony\Component\Ldap\Adapter\ExtLdap\Adapter') && isset($config['connection']) ) {
             $container->getDefinition('Symfony\Component\Ldap\Adapter\ExtLdap\Adapter')->setArguments([$config['connection']]);
         }
     }
@@ -45,20 +45,26 @@ class TounafLdapExtension extends Extension implements PrependExtensionInterface
     {
         $ldapConf = $container->getExtensionConfig('tounaf_ldap');
         if($container->hasExtension('security')) {
-            $providerConfig = array(
-                'providers' => $ldapConf[0]['providers']
-            );
+            $ldapProviderName = "ldap";
             
-            $container->prependExtensionConfig('security', $providerConfig);
-            $ldapProviderName = array_keys($ldapConf[0]['providers']);
-            $container->loadFromExtension('security', [
-                'firewalls' => [
-                    'main' => [
-                        'provider' => array_shift($ldapProviderName),
-                        'form_login_ldap' => array_merge(["service" => "Symfony\Component\Ldap\Ldap"], $ldapConf[0]['form_login_ldap'])
+            if(count($ldapConf) > 0 && isset($ldapConf[0]['providers'])) {
+                $providerConfig = [
+                    'providers' => $ldapConf[0]['providers']
+                ];
+                $ldapProviderName = array_keys($ldapConf[0]['providers']);
+                $container->prependExtensionConfig('security', $providerConfig);
+            }
+            if(count($ldapConf[0]) > 0 && isset($ldapConf[0]['form_login_ldap'])) {
+                $container->loadFromExtension('security', [
+                    'firewalls' => [
+                        'main' => [
+                            'provider' => array_shift($ldapProviderName),
+                            'form_login_ldap' => array_merge(["service" => "Symfony\Component\Ldap\Ldap"], $ldapConf[0]['form_login_ldap'])
+                        ]
                     ]
-                ]
-            ]);
+                ]);
+            }
+            
         }
         
 
