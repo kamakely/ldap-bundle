@@ -26,7 +26,7 @@ tounaf_ldap:
                 search_password: "password"
                 extra_fields: ['mail']
     form_login_ldap:
-        dn_string: 'MAKEITPULSE\{username}'
+        dn_string: 'DOMAIN\{username}' # ou {username}
         login_path: app_login
         check_path: app_login
         default_target_path: app_kama
