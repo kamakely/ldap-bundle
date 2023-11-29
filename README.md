@@ -22,7 +22,7 @@ tounaf_ldap:
         pulse_ldap_provider:
             ldap:
                 base_dn: "OU=Admin,DC=in,DC=com"
-                search_dn: "CN=ogc-ass,OU=Service accounts,OU=Admin,DC=in,DC=com"
+                search_dn: "CN=user-service,OU=Service accounts,OU=Admin,DC=in,DC=com"
                 search_password: "password"
                 extra_fields: ['mail']
     form_login_ldap:
