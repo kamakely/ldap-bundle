@@ -25,17 +25,5 @@
     "require-dev": {
         "symfony/dependency-injection": "6.0.* || 4.4.* || 5.4.* || 6.2.* || 6.3.* || 6.1.* || 7.*",
         "symfony/security-bundle": "4.4.* || 5.4.* || 6.* || 7.*"
-    },
-    "scripts": {
-        "post-install-cmd": [
-            "Tounaf\\Ldap\\Script\\Installer::postInstall"
-        ],
-        "post-package-install": [
-            "Tounaf\\Ldap\\Script\\Installer::postInstall"
-        ],
-        "post-update-cmd": [
-            "Tounaf\\Ldap\\Script\\Installer::postInstall",
-            "@auto-scripts"
-        ]
     }
 }
